@@ -91,7 +91,8 @@ topic "Updating apt caches"
 
 # Not using postgres, so let's remove it
 echo "Removing pgdg.list from sources.list"
-rm -rf /etc/apt/sources.list.d/pgdg.list
+sed -i 's|http://apt.postgresql.org/pub/repos/apt bionic-pgdg|#http://apt.postgresql.org/pub/repos/apt bionic-pgdg|' /etc/apt/sources.list
+sed -i 's|http://apt.postgresql.org/pub/repos/apt bionic-pgdg|#http://apt.postgresql.org/pub/repos/apt bionic-pgdg|' /etc/apt/sources.list.d/pgdg.list
 
 apt-get $APT_OPTIONS update | indent
 
