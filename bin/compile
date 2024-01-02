@@ -89,8 +89,9 @@ APT_FLAGS="--allow-downgrades --allow-remove-essential --allow-change-held-packa
 
 topic "Updating apt caches"
 
-# Remove deprecated postgres from sources.list
-add-apt-repository --remove http://apt.postgresql.org/pub/repos/apt bionic-pgdg Release
+# Not using postgres, so let's remove it
+echo "Removing pgdg.list from sources.list"
+rm -rf /etc/apt/sources.list.d/pgdg.list
 
 apt-get $APT_OPTIONS update | indent
 
