@@ -88,6 +88,10 @@ APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state
 APT_FLAGS="--allow-downgrades --allow-remove-essential --allow-change-held-packages"
 
 topic "Updating apt caches"
+
+# Remove deprecated postgres from sources.list
+add-apt-repository --remove http://apt.postgresql.org/pub/repos/apt bionic-pgdg Release
+
 apt-get $APT_OPTIONS update | indent
 
 for PACKAGE in $PACKAGES; do
